@@ -1,0 +1,31 @@
+{% extends "register/base.html" %}
+{% block content %}
+
+<h1>日記一覧</h1>
+<table class="table">
+  <thead>
+    <tr>
+      <th>タイトル</th>
+      <th>日付</th>
+      <th>Weather</th>
+      <th>Comment</th>
+      <th>Update</th>
+      <th>Delete</th>
+
+    </tr>
+  </thead>
+  <tbody>
+    {% for emp in emp_list %}
+    <tr>
+      <td><a href="{% url 'register:detail' day.pk %}">{{ emp.title }}</a></td>
+      <td>{{ emp.employee_id }}</td>
+      <td>{{ emp.active_status}}</td>>
+      <!--<td>{{comment.message}}</td>>-->
+      <td>{{ employeestatus.joineddate }}</td>      <td><a href="{% url 'register:active_status' EmployeeStatus.pk %}">更新</a></td>
+      <td><a href="{% url 'register:joined_day' employeestatus.pk %}">削除</a></td>
+
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

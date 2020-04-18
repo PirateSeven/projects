@@ -1,0 +1,61 @@
+{% extends 'register/base.html' %}
+{% block content %}
+
+    <h1>スキル一覧</h1>
+    <p>{{ message }}</p>
+    <table border="1">
+
+<table class="table table-sm-responsive"><!-- ... -->
+
+  <thead class="thead-light">
+    <tr>
+        <th>#</th>
+        <th>スキル ID</th>
+        <th>スキル名</th>
+        <th>スキル詳細</th>
+        <th>登録日</th>
+        <th>編集</th>
+
+    </tr>
+  </thead>
+  <tbody>
+  {% for data in articles %}
+    <tr>
+      <th scope="row">{{ forloop.counter }}</th>
+            <td>{{ data.skill_id }}</td>
+            <td>{{ data.skill_name }}</td>
+            <td>{{ data.skill_description }}</td>
+            <td>{{ data.registered_date }}</td>
+
+
+      <td><button type="button" class="btn btn-success"><a href="{% url 'register:master_skill_update' data.pk %}" class="card-link" ><font font color="white" >編集</font></a></button></td>
+
+    </tr>
+
+  {% endfor %}
+
+</table>
+
+<div>
+<div class="pager">
+    <!-- 前のページへのリンク -->
+    {% if articles.has_previous %}
+        <a href="?p={{ articles.previous_page_number }}">前へ</a>
+    {% endif %}
+
+    <!-- 現在のページ番号と全体のページ数 -->
+    <span>
+        {{ articles.number }} / {{ articles.paginator.num_pages }}
+    </span>
+
+    <!-- 次のページへのリンク -->
+    {% if articles.has_next %}
+        <a href="?p={{ articles.next_page_number }}">次へ</a>
+    {% endif %}
+</div>
+</div>
+<br>
+<br>
+<a href="/././././" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">TOP</a>
+
+{% endblock %}

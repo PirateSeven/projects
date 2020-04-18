@@ -1,0 +1,36 @@
+{% extends "register/base.html" %}
+{% load static %}
+{% block content %}
+{% if messages %}
+    {% for message in messages %}
+
+    <div class="alert alert-danger" role="alert">
+      <strong>ｖ</strong> Change a few things up and try submitting again.
+    </div>
+
+    {% endfor %}
+{% else %}
+
+
+{{ head.all }}
+
+
+<div class="alert alert-warning alert-dismissible fade show" role="alert">
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">×</span>
+  </button>
+  <strong>{{order}}</strong> You should check in on some of those fields below.
+</div>
+
+<form action="" method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    <label for="file1"> Upload a file  </label><br>
+    <input type="file" id="file1" name="file">
+    <br><br>
+    <small>Only accepts CSV files</small>
+    <button type="submit">Upload</button>
+</form>
+{% endif %}
+<br>
+<a href="/././././" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">TOP</a>
+{% endblock %}

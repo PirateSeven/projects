@@ -1,0 +1,134 @@
+{% extends "register/base.html" %}
+{% load static %}
+{% block content %}
+<!-- About -->
+<!-- Team -->
+<!-- Team -->
+  <section class="bg-light page-section" id="team">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12 text-center">
+          <h2 class="section-heading text-uppercase">TEAM Bへ質問をどうぞ</h2>
+          <h2 class="section-subheading text-muted">実質4日間での開発作業はとても大変でしたがチーム一丸でがんばりました！</h2>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-4">
+          <div class="team-member">
+            <img class="mx-auto rounded-circle" src="{% static 'img/team/1.jpg' %}" alt="">
+            <h4>Anna S.</h4>
+            <p class="text-muted">成果物・品質管理</p>
+            <ul class="list-inline social-buttons">
+            </ul>
+          </div>
+        </div>
+        <div class="col-sm-4">
+          <div class="team-member">
+            <img class="mx-auto rounded-circle" src="{% static 'img/team/2.jpg' %}" alt="">
+            <h4>Yuta M.</h4>
+            <p class="text-muted">テスト管理</p>
+            <ul class="list-inline social-buttons">
+            </ul>
+          </div>
+        </div>
+        <div class="col-sm-4">
+          <div class="team-member">
+            <img class="mx-auto rounded-circle" src="{% static 'img/team/3.jpg' %}" alt="">
+            <h4>Hikaru K.</h4>
+            <p class="text-muted">設計管理</p>
+            <ul class="list-inline social-buttons">
+            </ul>
+          </div>
+        </div>
+        <div class="col-sm-4">
+          <div class="team-member">
+            <img class="mx-auto rounded-circle" src="{% static 'img/team/4.jpg' %}" alt="">
+            <h4>Shichiji I.</h4>
+            <p class="text-muted">開発管理</p>
+            <ul class="list-inline social-buttons">
+            </ul>
+          </div>
+        </div>
+
+  </section>
+
+  <section class="page-section" id="about">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12 text-center">
+          <h2 class="section-heading text-uppercase">TEAM B 開発演習の流れ</h2>
+          <h2 class="section-subheading text-muted">トレーニングで学んだことを活用しながら開発に挑みました！</h2><br><br>
+      </div>
+      <div class="row">
+        <div class="col-lg-12">
+          <ul class="timeline">
+            <li>
+              <div class="timeline-image">
+                <img class="rounded-circle img-fluid" src="{% static 'img/about/1.jpg' %}" alt="">
+              </div>
+              <div class="timeline-panel">
+                <div class="timeline-heading">
+                  <h4>Day1 - 2</h4>
+                  <h5 class="subheading">プロジェクトモビライゼーション~要件定義</h5>
+                </div>
+                <div class="timeline-body">
+                  <p class="text-muted"><font align="left">要件定義<br>機能/データ設計<br>POC/フィジビリティチェック<br>テスト方針作成<br>スコープ策定<br>納品/成果物フォーマット定義</font></p>
+                </div>
+              </div>z
+            </li>
+            <li class="timeline-inverted">
+              <div class="timeline-image">
+                <img class="rounded-circle img-fluid" src="{% static 'img/about/1.jpg' %}" alt="">
+              </div>
+              <div class="timeline-panel">
+                <div class="timeline-heading">
+                  <h4>Day2</h4>
+                  <h4 class="subheading">設計完了と開発着手</h4>
+                </div>
+                <div class="timeline-body">
+                  <p class="text-muted">データモデル設計<br>機能設計<br>画面遷移図作成<br>画面設計<br>Git準備<br>アプリベース作成<br></p>
+                </div>
+              </div>
+            </li>
+            <li>
+              <div class="timeline-image">
+                <img class="rounded-circle img-fluid" src="{% static 'img/about/1.jpg' %}" alt="">
+              </div>
+              <div class="timeline-panel">
+                <div class="timeline-heading">
+                  <h4>Day 3</h4>
+                  <h4 class="subheading">開発&UT、SIT, E2Eテストケース作成</h4>
+                </div>
+                <div class="timeline-body">
+                  <p class="text-muted">各機能実装<br>ユニットテスト<br>フロントページ作成<br>インテグレーションテストテストケース作成<br>インテグレーションテストテストケース作成<br></p>
+                </div>
+              </div>
+            </li>
+            <li class="timeline-inverted">
+              <div class="timeline-image">
+                <img class="rounded-circle img-fluid" src="{% static 'img/about/1.jpg' %}" alt="">
+              </div>
+              <div class="timeline-panel">
+                <div class="timeline-heading">
+                  <h4>Day 4</h4>
+                  <h4 class="subheading">テスト実施、成果物最終化</h4>
+                </div>
+                <div class="timeline-body">
+                  <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt ut voluptatum eius sapiente, totam reiciendis temporibus qui quibusdam, recusandae sit vero unde, sed, incidunt et ea quo dolore laudantium consectetur!
+                  </p>
+                </div>
+              </div>
+            </li>
+            <li class="timeline-inverted">
+              <div class="timeline-image">
+                <h4>
+                  <br>成果報告
+                  <br></h4>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+{% endblock %}

@@ -1,0 +1,28 @@
+{% extends 'register/base.html' %}
+
+{% block content %}
+<!--<p>{{day.title}}</p>-->
+
+<div class="alert alert-info" role="alert">
+    <strong>Heads up!</strong> This alert needs your attention,
+    but it's not super important.
+</div>
+<form action="" method="POST">
+   <table class="table">
+
+
+       <tr>
+           <th>Vendor Master</th>
+           <td>{{ form.as_p }}</td>
+       </tr>
+
+   </table>
+
+    <button type="submit" onclick="location.href='../../../'"  class = "btn btn-primary">　　　Save　　　</button>
+    {% csrf_token %}
+
+</form>
+<br>
+
+    <button type="button" class="btn btn-success"><a href="../../../master/vendor/upload" class="card-link" ><font font color="white" >CSV一括登録</font></a></button>
+{% endblock %}

@@ -1,0 +1,370 @@
+{% extends "register/base.html" %}
+{% load static %}
+{% block content %}
+<div id="carouselFadeExampleIndicators" class="carousel slide carousel-fade" data-ride="carousel">
+  <div class="carousel-inner" role="listbox">
+    <div class="carousel-item active">
+      <img class="d-block w-100" src="{% static 'img/carousel1.jpg'%}" data-src="holder.js/900x400?theme=social" alt="900x400" data-holder-rendered="true" style="width: 900px; height: 400px;">
+    </div>
+    <div class="carousel-item">
+      <img class="d-block w-100" src="{% static 'img/carousel2.png'%}" data-src="holder.js/900x400?theme=social" alt="900x400" data-holder-rendered="true" style="width: 900px; height: 400px;">
+    </div>
+        <div class="carousel-item">
+      <img class="d-block w-100" src="{% static 'img/carousel3.jpg'%}" data-src="holder.js/900x400?theme=social" alt="900x400" data-holder-rendered="true" style="width: 900px; height: 400px;">
+    </div>
+            <div class="carousel-caption d-none d-md-block">
+              <h1><font color="Orange">HR管理システム</font></h1>
+              <h2><font color="Orange">Developed By Team B</font></h2>
+            </div>
+
+  <a class="carousel-control-prev" href="#carouselFadeExampleIndicators" role="button" data-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="carousel-control-next" href="#carouselFadeExampleIndicators" role="button" data-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+  </a>
+</div>
+
+
+{% if user.is_authenticated %}
+<div class="alert alert-success" role="alert">
+    <strong>ログイン成功!</strong> あなたの情報を入力・更新しましょう！
+</div>
+
+<div>
+    <div class="card-group">
+  <div class="card">
+    <div class="card-body">
+      <h4 class="card-title">個人基礎情報</h4>
+
+      {% if request.user.is_staff %}
+      <p><strong>{{ user.last_name}} {{ user.first_name}}</strong>さんは<strong>管理者</strong>です</p>
+      {% else %}
+      <p><strong>{{ user.last_name}} {{ user.first_name}}</strong>さんは<strong>一般ユーザ</strong>です</p>
+      {% endif%}
+      <span class="badge badge-danger">個人情報は利用しないでください</span>
+      <p class="card-text">あなたの社員情報を編集できます</p>
+        <button type="button" class="btn btn-success"><a href="{% url 'register:user_detail' user.pk %}" class="card-link" ><font font color="white" >詳細</font></a></button>
+        <button type="button" class="btn btn-success"><a href="{% url 'register:password_change' %}" class="card-link" ><font font color="white" >パスワード変更</font></a></button>
+
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-body">
+      <h4 class="card-title">入社前情報</h4>
+      <p class="card-text">あなたの職歴や過去の業務経験を登録・編集できます</p>
+      <button type="button" class="btn btn-success"><a href="{% url 'register:emp_job_history_list' %}" class="card-link" ><font font color="white" >一覧</font></a></button>
+        <button type="button" class="btn btn-success"><a href="{% url 'register:emp_job_hist_add' %}" class="card-link" ><font font color="white" >追加</font></a></button>
+        {% if request.user.is_staff %}
+        <button type="button" class="btn btn-success"><a href="{% url 'register:emp_job_hist_update' user.pk %}" class="card-link" ><font font color="white" >編集</font></a></button>
+        {% endif%}
+            </div>
+  </div>
+  <div class="card">
+    <div class="card-body">
+      <h4 class="card-title">社員スキル情報</h4>
+
+      <p class="card-text">あなたのスキルを登録・編集できます</p>
+
+      <button type="button" class="btn btn-success"><a href="{% url 'register:emp_skill_list' %}" class="card-link" ><font font color="white" >一覧</font></a></button>
+      <button type="button" class="btn btn-success"><a href="{% url 'register:emp_skills_add' %}" class="card-link" ><font font color="white" >追加</font></a></button>
+      {% if request.user.is_staff %}
+      <button type="button" class="btn btn-success"><a href="{% url 'register:emp_skills_update' user.pk %}" class="card-link" ><font font color="white" >編集</font></a></button>
+      {% endif %}
+          </div>
+
+    </div>
+    <div class="card">
+      <div class="card-body">
+        <h4 class="card-title">社員トレーニング履歴情報</h4>
+
+        {% if request.user.is_staff %}
+        <span class="badge badge-warning">History</span>
+        <p class="card-text"> 登録された社員の情報を登録・編集できます</p>
+
+        {% else %}
+        <div class="alert alert-warning" role="alert">
+        <strong>注意!</strong> 一般ユーザーは閲覧専用です
+        </div>
+        {% endif %}
+        <button type="button" class="btn btn-success"><a href="{% url 'register:traiing_history_list' %}" class="card-link" ><font font color="white" >一覧</font></a></button>
+
+        {% if request.user.is_staff %}
+        <button type="button" class="btn btn-success"><a href="{% url 'register:emp_training_history_add' %}" class="card-link" ><font font color="white" >追加</font></a></button>
+        {% endif %}
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-body">
+        <h4 class="card-title">アサイン履歴情報</h4>
+        {% if request.user.is_staff %}
+        <span class="badge badge-warning">History</span>
+        <p class="card-text"> アサイン情報を登録・編集できます</p>
+        {% else %}
+
+        <div class="alert alert-warning" role="alert">
+        <strong>注意!</strong> 一般ユーザーは閲覧専用です
+        </div>
+        {% endif %}
+
+       <button type="button" class="btn btn-success"><a href="{% url 'register:emp_assign_list' %}" class="card-link" ><font font color="white" >一覧</font></a></button>
+
+        {% if request.user.is_staff %}
+        <button type="button" class="btn btn-success"><a href="{% url 'register:emp_assign_add' %}" class="card-link" ><font font color="white" >追加</font></a></button>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<br>
+{% if request.user.is_staff %}
+<div class="alert alert-info" role="alert">
+    <strong>注目！</strong> ここから下は管理者専用メニューです
+</div>
+
+
+<div>
+    <div class="card-group">
+  <div class="card">
+    <div class="card-body">
+      <h4 class="card-title">アカウント情報</h4>
+      <span class="badge badge-pill badge-primary">MASTER</span>
+      <p class="card-text">アカウント情報を登録・編集できます</p>
+      <button type="button" class="btn btn-success"><a href="{% url 'register:account_list' %}" class="card-link" ><font font color="white" >一覧</font></a></button>
+      <button type="button" class="btn btn-success"><a href="{% url 'register:master_account_add' %}" class="card-link" ><font font color="white" >追加</font></a></button>
+      </div>
+  </div>
+  <div class="card">
+    <div class="card-body">
+      <h4 class="card-title">プロジェクト情報</h4>
+      <span class="badge badge-pill badge-primary">MASTER</span>
+      <p class="card-text">プロジェクト情報を登録・編集できます</p>
+      <button type="button" class="btn btn-success"><a href="{% url 'register:project_list' %}" class="card-link" ><font font color="white" >一覧</font></a></button>
+      <button type="button" class="btn btn-success"><a href="{% url 'register:master_project_add' %}" class="card-link" ><font font color="white" >追加</font></a></button>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-body">
+      <h4 class="card-title">社員トレーニング履歴情報</h4>
+      <span class="badge badge-warning">History</span>
+      <p class="card-text"> 登録された社員の情報を登録・編集できます</p>
+      <button type="button" class="btn btn-success"><a href="{% url 'register:traiing_history_list' %}" class="card-link" ><font font color="white" >一覧</font></a></button>
+      <button type="button" class="btn btn-success"><a href="{% url 'register:emp_training_history_add' %}" class="card-link" ><font font color="white" >追加</font></a></button>
+    </div>
+  </div>
+  </div>
+</div>
+</div>
+
+<br>
+<div>
+    <div class="card-group">
+  <div class="card">
+    <div class="card-body">
+      <h4 class="card-title">トレーニング情報</h4>
+      <span class="badge badge-pill badge-primary">MASTER</span>
+      <p class="card-text">トレーニング情報を登録・編集できます</p>
+      <button type="button" class="btn btn-success"><a href="{% url 'register:training_list' %}" class="card-link" ><font font color="white" >一覧</font></a></button>
+      <button type="button" class="btn btn-success"><a href="{% url 'register:master_training_add' %}" class="card-link" ><font font color="white" >追加</font></a></button>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-body">
+      <h4 class="card-title">ベンダー情報</h4>
+      <span class="badge badge-pill badge-primary">MASTER</span>
+      <p class="card-text">ベンダー情報を登録・編集できます</p>
+      <button type="button" class="btn btn-success"><a href="{% url 'register:vendor_list'  %}" class="card-link" ><font font color="white" >一覧</font></a></button>
+      <button type="button" class="btn btn-success"><a href="{% url 'register:master_vendor_add' %}" class="card-link" ><font font color="white" >追加</font></a></button>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-body">
+      <h4 class="card-title">ロール情報</h4>
+      <span class="badge badge-pill badge-primary">MASTER</span>
+      <p class="card-text">ロール情報を登録・編集できます</p>
+      <button type="button" class="btn btn-success"><a href="{% url 'register:role_list' %}" class="card-link" ><font font color="white" >一覧</font></a></button>
+      <button type="button" class="btn btn-success"><a href="{% url 'register:master_role_add' %}" class="card-link" ><font font color="white" >追加</font></a></button>
+
+    </div>
+  </div>
+</div>
+</div>
+<br>
+<div>
+    <div class="card-group">
+
+  <div class="card">
+    <div class="card-body">
+      <h4 class="card-title">DTE情報</h4>
+      <span class="badge badge-pill badge-primary">MASTER</span>
+      <p class="card-text">DTE情報を登録・編集できます</p>
+      <button type="button" class="btn btn-success"><a href="{% url 'register:dte_list'  %}" class="card-link" ><font font color="white" >一覧</font></a></button>
+      <button type="button" class="btn btn-success"><a href="{% url 'register:master_dte_add' %}" class="card-link" ><font font color="white" >追加</font></a></button>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-body">
+      <h4 class="card-title">アサイン情報</h4>
+      <span class="badge badge-warning">History</span>
+      <p class="card-text">アサイン情報を登録・編集できます</p>
+      <button type="button" class="btn btn-success"><a href="{% url 'register:emp_assign_list' %}" class="card-link" ><font font color="white" >一覧</font></a></button>
+      <button type="button" class="btn btn-success"><a href="{% url 'register:emp_assign_add' %}" class="card-link" ><font font color="white" >追加</font></a></button>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-body">
+      <h4 class="card-title">社員一覧情報</h4>
+      <span class="badge badge-warning">History</span>
+      <p class="card-text"> 社員の情報を表示します</p>
+        <button type="button" class="btn btn-success"><a href="{% url 'register:list'  %}" class="card-link" ><font font color="white" >見る</font></a></button>
+    </div>
+  </div>
+  </div>
+</div>
+</div>
+
+<br>
+<div>
+    <div class="card-group">
+  <div class="card">
+    <div class="card-body">
+      <h4 class="card-title">社員在籍情報</h4>
+      <span class="badge badge-warning">History</span>
+      <p class="card-text">社員の入退社日と在籍状況を登録・編集できます</p>
+        <button type="button" class="btn btn-success"><a href="{% url 'register:emp_status_add' %}" class="card-link" ><font font color="white" >登録</font></a></button>
+        <button type="button" class="btn btn-success"><a href="{% url 'register:emp_status_update' user.pk %}" class="card-link" ><font font color="white" >更新</font></a></button>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-body">
+      <h4 class="card-title">スキル情報</h4>
+      <span class="badge badge-pill badge-primary">MASTER</span>
+      <p class="card-text">スキル情報を登録・編集できます</p>
+      <button type="button" class="btn btn-success"><a href="{% url 'register:skill_list' %}" class="card-link" ><font font color="white" >一覧</font></a></button>
+      <button type="button" class="btn btn-success"><a href="{% url 'register:master_skill_add' %}" class="card-link" ><font font color="white" >追加</font></a></button>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-body">
+      <h4 class="card-title">スキルカテゴリ情報</h4>
+      <span class="badge badge-pill badge-primary">MASTER</span>
+      <p class="card-text">スキルカテゴリ情報を登録・編集できます</p>
+      <button type="button" class="btn btn-success"><a href="{% url 'register:skill_category_list' %}" class="card-link" ><font font color="white" >一覧</font></a></button>
+      <button type="button" class="btn btn-success"><a href="{% url 'register:master_skill_ctg_add' %}" class="card-link" ><font font color="white" >追加</font></a></button>
+    </div>
+  </div>
+</div>
+</div>
+
+<br>
+{% endif%}
+
+<br>
+
+{% else %}
+
+
+<div class="alert alert-warning" role="alert">
+  <strong>ログインしてください</strong> 　　未登録の場合、「利用登録」から登録してください。
+</div>
+
+
+<div>
+    <div class="card-group">
+  <div class="card">
+    <div class="card-body">
+      <h4 class="card-title">利用登録</h4>
+      <p class="card-text">HR管理システムの利用登録を行います</p>
+        <button type="button" class="btn btn-success"><a href="/user_create" class="card-link" ><font font color="white" >利用登録</font></a></button>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-body">
+      <h4 class="card-title">ログイン</h4>
+      <p class="card-text">アカウントをお持ちの方はこちら</p>
+        <button type="button" class="btn btn-success"><a href="/login" class="card-link" ><font font color="white" >ログイン</font></a></button>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-body">
+      <h4 class="card-title">このサイトについて</h4>
+      <p class="card-text">詳細</p>
+                <button type="button" class="btn btn-success"><a href="#!" class="card-link" ><font font color="white" >このサイトについて</font></a></button>
+
+    </div>
+  </div>
+</div>
+</div>
+{% endif %}
+
+<!-- Team -->
+  <section class="bg-light page-section" id="team">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12 text-center">
+          <h2 class="section-heading text-uppercase">TEAM Bへ質問をどうぞ</h2>
+          <h3 class="section-subheading text-muted">GitHubを.</h3>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-4">
+          <div class="team-member">
+            <img class="mx-auto rounded-circle" src="{% static 'img/team/1.jpg' %}" alt="">
+            <h4>Anna S.</h4>
+            <p class="text-muted">成果物・品質管理</p>
+            <ul class="list-inline social-buttons">
+            </ul>
+          </div>
+        </div>
+        <div class="col-sm-4">
+          <div class="team-member">
+            <img class="mx-auto rounded-circle" src="{% static 'img/team/2.jpg' %}" alt="">
+            <h4>Yuta M.</h4>
+            <p class="text-muted">テスト管理</p>
+            <ul class="list-inline social-buttons">
+            </ul>
+          </div>
+        </div>
+        <div class="col-sm-4">
+          <div class="team-member">
+            <img class="mx-auto rounded-circle" src="{% static 'img/team/3.jpg' %}" alt="">
+            <h4>Hikaru K.</h4>
+            <p class="text-muted">設計管理</p>
+            <ul class="list-inline social-buttons">
+            </ul>
+          </div>
+        </div>
+        <div class="col-sm-4">
+          <div class="team-member">
+            <img class="mx-auto rounded-circle" src="{% static 'img/team/4.jpg' %}" alt="">
+            <h4>Shichiji I.</h4>
+            <p class="text-muted">開発管理</p>
+            <ul class="list-inline social-buttons">
+            </ul>
+          </div>
+        </div>
+
+      </div>
+      <div class="row">
+        <div class="col-lg-8 mx-auto text-center">
+          <p class="large text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut eaque, laboriosam veritatis, quos non quis ad perspiciatis, totam corporis ea, alias ut unde.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+
+
+
+
+
+{% endblock %}

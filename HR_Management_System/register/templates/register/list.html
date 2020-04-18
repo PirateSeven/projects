@@ -1,0 +1,63 @@
+{% extends 'register/base.html' %}
+{% block content %}
+
+    <h1>社員情報一覧</h1>
+    <p>{{ message }}</p>
+    <table border="1">
+
+<table class="table table-sm-responsive"><!-- ... -->
+
+  <thead class="thead-light">
+    <tr>
+        <th>#</th>
+        <th>Employee ID</th>
+        <th>Enterprise ID</th>
+        <th>フルネーム</th>
+        <th>生年月日</th>
+        <th>キャリアレベル</th>
+        <th>DTE</th>
+        <th>登録日</th>
+        <th>詳細</th>
+
+    </tr>
+  </thead>
+  <tbody>
+  {% for user in articles %}
+    <tr>
+      <th scope="row">{{ forloop.counter }}</th>
+            <td>{{ user.employee_id }}</td>
+            <td>{{ user.email }}</td>
+            <td>{{ user.last_name }} {{ user.middle_name }} {{ user.first_name }}</td>
+            <td>{{ user.date_of_birth }}</td>
+            <td>{{ user.career_level }}</td>
+            <td>{{ user.dte_name }}</td>
+            <td>{{ user.date_joined }}</td>
+            <td>        <button type="button" class="btn btn-success"><a href="{% url 'register:user_detail' user.pk %}" class="card-link" ><font font color="white" >詳細</font></a></button></td>
+
+    </tr>
+
+  {% endfor %}
+
+</table>
+
+<div>
+<div class="pager">
+    <!-- 前のページへのリンク -->
+    {% if articles.has_previous %}
+        <a href="?p={{ articles.previous_page_number }}">前へ</a>
+    {% endif %}
+
+    <!-- 現在のページ番号と全体のページ数 -->
+    <span>
+        {{ articles.number }} / {{ articles.paginator.num_pages }}
+    </span>
+
+    <!-- 次のページへのリンク -->
+    {% if articles.has_next %}
+        <a href="?p={{ articles.next_page_number }}">次へ</a>
+    {% endif %}
+</div>
+</div>
+
+
+{% endblock %}

@@ -1,0 +1,46 @@
+{% extends "register/base.html" %}
+{% block content %}
+<table class="table">
+    <tbody>
+      <tr>
+          <th>Employee ID</th>
+          <td>{{ user.employee_id }}</td>
+        </tr>
+        <tr>
+            <th>Enterprise ID</th>
+            <td>{{ user.email }}</td>
+        </tr>
+        <tr>
+            <th>氏</th>
+            <td>{{ user.last_name }}</td>
+        </tr>
+        <tr>
+            <th>ミドルネーム</th>
+            <td>{{ user.middle_name }}</td>
+        </tr>
+        <tr>
+            <th>名</th>
+            <td>{{ user.first_name }}</td>
+        </tr>
+        <tr>
+            <th>生年月日</th>
+            <td>{{ user.date_of_birth }}</td>
+        </tr>
+        <tr>
+            <th>キャリアレベル</th>
+            <td>{{ user.career_level }}</td>
+        </tr>
+        <tr>
+            <th>所属DTE</th>
+            <td>{{ user.dte_name }}</td>
+        </tr>
+
+    </tbody>
+</table>
+
+<form action="" method="POST">
+
+  <button type="button" class="btn btn-success"><a href="{% url 'register:user_update' user.pk %}" class="card-link" ><font font color="white" >編集</font></a></button>
+    {% csrf_token %}
+</form>
+{% endblock %}
